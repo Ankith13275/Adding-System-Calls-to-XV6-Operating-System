@@ -40,8 +40,7 @@ Using git and cloning XV6 OS from git://github.com/mit-pdos/xv6-public.git
 
 cd xv6-public make qemu
 
-
-
+![image](https://user-images.githubusercontent.com/56472421/137188493-057e02d7-2f22-49b8-841f-9d8f1e13da17.png)
 
 
 
