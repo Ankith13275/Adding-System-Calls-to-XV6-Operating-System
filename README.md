@@ -36,7 +36,7 @@ Using git and cloning XV6 OS from git://github.com/mit-pdos/xv6-public.git
 
 ![image](https://user-images.githubusercontent.com/56472421/137188202-6460ff09-5676-4a19-80df-a24558573a0d.png)
 
-### RUNNING XV6 COMMAND:
+#### RUNNING XV6 COMMAND:
 
 cd xv6-public make qemu
 
@@ -58,7 +58,7 @@ int main(int argc,char *argv[ ]){
 
 ![image](https://user-images.githubusercontent.com/56472421/137189887-59316d0b-3461-439f-b1e8-e402eb609c40.png)
 
-### Makefile.c:
+#### Makefile.c:
 The Makefile needs to be edited to make our program available for the xv6 source code for compilation. The following sections of the Makefile needs to be edited to add our program myprogram.c
 
 <img width="528" alt="Screenshot 2021-10-13 at 11 48 02 PM" src="https://user-images.githubusercontent.com/56472421/137190458-f0f20377-2f7f-4bac-98cd-0d4e34751f6e.png">
@@ -78,7 +78,7 @@ Here myprogram is availablein the list and by giving the name we can see the out
 
 The following are the changes to be done to add our system call cps () to xv6:
 
-##### 1) Add name to syscall.h:
+#### 1) Add name to syscall.h:
 
 This defines the position of the system call vector that connects to the implementation.
 
@@ -89,7 +89,7 @@ This defines the position of the system call vector that connects to the impleme
 #### 2)	Add function prototype to defs.h :
 This adds a forward declaration for the new system call. We add this function in proc.c
 
-### CODE: int	cps(void)
+#### CODE: int	cps(void)
 
 ![image](https://user-images.githubusercontent.com/56472421/137191072-01077030-43af-4433-a088-c0e0c70ea75d.png)
 
@@ -97,7 +97,7 @@ This adds a forward declaration for the new system call. We add this function in
  
 It defines the function that can be called through the shell. We add this function prototype in syscalls.
 
-### CODE: int cps(void);
+#### CODE: int cps(void);
 
 ![image](https://user-images.githubusercontent.com/56472421/137191253-f973ef5b-a3a2-4da4-ab32-fd4007f936c1.png)
 
@@ -119,7 +119,7 @@ Int sys_cps(void)
  #### 5) Add call to usys.S: 
  It uses the macro to define connect the call of user to the system call function.
  
- ### CODE: SYSCALL(cps)
+ #### CODE: SYSCALL(cps)
  
  ![image](https://user-images.githubusercontent.com/56472421/137191589-1adb229a-12c3-45b8-84cd-fd4ba283dd4d.png)
 
@@ -127,7 +127,7 @@ Int sys_cps(void)
 
 It defines the function that connects the kernel and the shell and by using the position defined in syscall.h it adds the function to the system call.
 
-### CODE: extern int sys_cps(void);
+#### CODE: extern int sys_cps(void);
 
 <img width="245" alt="Screenshot 2021-10-14 at 12 04 11 AM" src="https://user-images.githubusercontent.com/56472421/137192962-92237831-a19c-4226-96f0-58bb6d4397a5.png">
 
@@ -169,7 +169,7 @@ release(&ptable.lock);	// releasing acquired lock return 22;
 ```
 ![image](https://user-images.githubusercontent.com/56472421/137192079-f8bf94fb-4308-49fa-b00e-5f1f9bc363d2.png)
 
-8)	Create testing file ps.c with code shown below: 
+#### 8)	Create testing file ps.c with code shown below: 
 ```
 #include “types.h” 
 #include “stat.h” 
@@ -187,7 +187,7 @@ I am Modifying Makefile which compiles all changes we made inside the xv6 direct
 
 ![image](https://user-images.githubusercontent.com/56472421/137192340-60f24a00-1b2a-4121-888b-64fce3664442.png)
 
-### Output:
+#### Output:
 
 Now we will compile the whole code and execute the OS after the above changes are made.Our new syscall is now visible in the list:
 
@@ -200,15 +200,15 @@ Now we will compile the whole code and execute the OS after the above changes ar
 
 Default scheduling algorithm in XV6 operating system is round robin scheduling algorithm. It is not effective. It has more waiting time but priority scheduling algorithm reduces average waiting time.
 
-### 1) Add priority to struct proc in proc.h:
+#### 1) Add priority to struct proc in proc.h:
 
 Struct proc in proc.h is typically like PCB(process control block).It consists information about all the processes in the system. We add attribute priority in the struct proc which represents the priority of the process.
 
-### CODE: int priority; // process priority
+#### CODE: int priority; // process priority
 
 ![image](https://user-images.githubusercontent.com/56472421/137193894-d31e9292-6c87-4810-b1b4-957c38660e6f.png)
 
-### 2) Assign a default priority in proc.h:
+#### 2) Assign a default priority in proc.h:
 allocproc is a function that allocates resources to new process. It scans the entire process table and if it finds an unused entry then it will assign pid and resources to process. Here we set default priority for all the process to 60 in allocproc function.
 
 #### CODE: p->priority=60;	//default priority set to 60
@@ -266,7 +266,7 @@ int main(int argc, char *argv[]){
 
 We add a new function named as chpr in proc.c file. This function takes two arguments. First argument is process id, and second argument is the priority, This function changes the priority of given process id.
 
-CODE:
+#### CODE:
 ```
 // Change priority int
 ChangePriority(int pid, int priority)
@@ -294,7 +294,7 @@ As we have added system call cps, we have to follow same steps to add system cal
 
 As we have added system call cps, we have to follow same steps to add system call chpr in xv6 operating system.
 
-### Adding to syscall.h:
+#### Adding to syscall.h:
 
 ![image](https://user-images.githubusercontent.com/56472421/137194914-cb911a2e-dcf1-4a2e-9328-f2655ea0216b.png)
 
@@ -315,10 +315,10 @@ As we have added system call cps, we have to follow same steps to add system cal
 
 ![image](https://user-images.githubusercontent.com/56472421/137195161-11df6056-77d8-4a2d-8aaa-874735d72d7f.png)
 
-6) Adding nice.c program:
+#### 6) Adding nice.c program:
 This user program will call system call chpr(change priority) to change priority of the process.
 
-CODE:
+#### CODE:
 ```
 #include "types.h" 
 #include "stat.h" 
@@ -347,7 +347,7 @@ exit();
 ![image](https://user-images.githubusercontent.com/56472421/137195258-3a4a6345-9b0a-472a-a200-6c1b24d2d6da.png)
 
 
-OUTPUT:
+#### OUTPUT:
 
 ![image](https://user-images.githubusercontent.com/56472421/137195296-9c55110d-cd55-49c1-9d6f-fa7e7e892e5a.png)
 
