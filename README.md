@@ -123,7 +123,7 @@ Int sys_cps(void)
  
  ![image](https://user-images.githubusercontent.com/56472421/137191589-1adb229a-12c3-45b8-84cd-fd4ba283dd4d.png)
 
-6) Add call to syscall.c:
+#### 6) Add call to syscall.c:
 
 It defines the function that connects the kernel and the shell and by using the position defined in syscall.h it adds the function to the system call.
 
@@ -315,7 +315,7 @@ As we have added system call cps, we have to follow same steps to add system cal
 
 ![image](https://user-images.githubusercontent.com/56472421/137195161-11df6056-77d8-4a2d-8aaa-874735d72d7f.png)
 
-#### 6) Adding nice.c program:
+#### 7) Adding nice.c program:
 This user program will call system call chpr(change priority) to change priority of the process.
 
 #### CODE:
